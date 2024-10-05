@@ -27,8 +27,8 @@
 }
 
 .overview-search-container:focus-within {
-    border-color: white;
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+    border-color: whitesmoke;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.25);
 }
 
 .overview-search-icon {
