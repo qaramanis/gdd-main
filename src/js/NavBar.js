@@ -9,6 +9,9 @@ const AppBar = () => {
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+  const handleMenuItemClick = () => {
+    setIsMenuOpen(false);
+  };
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (menuRef.current && !menuRef.current.contains(event.target)) {
@@ -43,16 +46,32 @@ const AppBar = () => {
         />
         {isMenuOpen && (
           <div className="account-dropdown-menu">
-            <Link to="/profile" className="account-menu-item">
+            <Link
+              to="/profile"
+              className="account-menu-item"
+              onClick={handleMenuItemClick}
+            >
               Profile
             </Link>
-            <Link to="/settings" className="account-menu-item">
+            <Link
+              to="/settings"
+              className="account-menu-item"
+              onClick={handleMenuItemClick}
+            >
               Settings
             </Link>
-            <Link to="/billing" className="account-menu-item">
+            <Link
+              to="/billing"
+              className="account-menu-item"
+              onClick={handleMenuItemClick}
+            >
               Billing
             </Link>
-            <Link to="/logout" className="account-menu-item">
+            <Link
+              to="/logout"
+              className="account-menu-item"
+              onClick={handleMenuItemClick}
+            >
               Logout
             </Link>
           </div>

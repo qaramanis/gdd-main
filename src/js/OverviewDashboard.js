@@ -11,6 +11,9 @@ const OverviewDashboard = () => {
   const toggleAddMenu = () => {
     setIsAddMenuOpen(!isAddMenuOpen);
   };
+  const handleMenuItemClick = () => {
+    setIsAddMenuOpen(false);
+  };
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (addMenuRef.current && !addMenuRef.current.contains(event.target)) {
@@ -35,20 +38,32 @@ const OverviewDashboard = () => {
           />
         </div>
         <div className="overview-header-buttons" ref={addMenuRef}>
-          <div>
+          <div className="relative">
             <button className="overview-add-button" onClick={toggleAddMenu}>
               <Plus size={16} className="overview-button-icon" />
               Add New...
             </button>
             {isAddMenuOpen && (
               <div className="new-dropdown-menu">
-                <Link to="/" className="new-menu-item">
+                <Link
+                  to="/"
+                  className="new-menu-item"
+                  onClick={handleMenuItemClick}
+                >
                   Game
                 </Link>
-                <Link to="/" className="new-menu-item">
+                <Link
+                  to="/"
+                  className="new-menu-item"
+                  onClick={handleMenuItemClick}
+                >
                   File
                 </Link>
-                <Link to="/" className="new-menu-item">
+                <Link
+                  to="/"
+                  className="new-menu-item"
+                  onClick={handleMenuItemClick}
+                >
                   Team Member
                 </Link>
               </div>

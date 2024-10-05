@@ -61,10 +61,14 @@
     gap: 1rem;
 }
 
+.relative {
+    position: relative;
+}
+
 .overview-add-button {
     display: flex;
     align-items: center;
-    padding: 0.375rem 0.5rem;
+    padding: 0.375rem 0.75rem;
     border-radius: 0.5rem;
     background-color: whitesmoke;
     color: black;
@@ -75,15 +79,20 @@
     background-color: lightgray;
 }
 
+.relative {
+    position: relative;
+}
+
 .new-dropdown-menu {
     position: absolute;
-    top: 20%;
-    right: 20%;
+    margin-top: 0.5rem;
+    right: 0;
     background-color: #2a2a2a;
     border: 1px solid #ccc;
     border-radius: 4px;
     padding: 8px 0;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: start;
 }
 
 .new-menu-item {
