@@ -42,7 +42,7 @@
 .account-dropdown-menu {
     position: absolute;
     top: 100%;
-    right: 0;
+    right: 3%;
     background-color: #2a2a2a;
     border: 1px solid #ccc;
     border-radius: 4px;
