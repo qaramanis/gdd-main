@@ -3,7 +3,17 @@
     font-family: monospace;
 }
 
-.my-teams-container {
+.container {
     margin-top: 3rem;
-    text-align: start;
+    align-items: center;
+    padding-top: 1rem;
+}
+
+.dashboard {
+    background-color: black;
+    color: whitesmoke;
+}
+
+.relative {
+    position: relative;
 }

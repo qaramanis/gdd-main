@@ -6,7 +6,7 @@ import ActivityDashboard from "../js/ActivityDashboard";
 
 const Activity = () => {
   return (
-    <div className="activity-container">
+    <div className="container">
       <ActivityDashboard />
     </div>
   );

@@ -4,7 +4,7 @@ import OverviewDashboard from "./OverviewDashboard";
 
 const Overview = () => {
   return (
-    <div className="overview-container">
+    <div className="container">
       <OverviewDashboard />
     </div>
   );

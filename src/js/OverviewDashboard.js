@@ -27,7 +27,7 @@ const OverviewDashboard = () => {
     };
   }, []);
   return (
-    <div className="overview-dashboard">
+    <div className="dashboard">
       <div className="overview-dashboard-header">
         <div className="overview-search-container">
           <Search className="overview-search-icon" size={20} />
@@ -46,21 +46,21 @@ const OverviewDashboard = () => {
             {isAddMenuOpen && (
               <div className="new-dropdown-menu">
                 <Link
-                  to="/"
+                  to="/add-new"
                   className="new-menu-item"
                   onClick={handleMenuItemClick}
                 >
                   Game
                 </Link>
                 <Link
-                  to="/"
+                  to="/add-new"
                   className="new-menu-item"
                   onClick={handleMenuItemClick}
                 >
                   File
                 </Link>
                 <Link
-                  to="/"
+                  to="/add-new"
                   className="new-menu-item"
                   onClick={handleMenuItemClick}
                 >

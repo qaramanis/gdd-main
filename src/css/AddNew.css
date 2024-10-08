@@ -1,0 +1,12 @@
+.add-new-section-header{
+    display: flex;
+    flex-direction: row;
+    margin: 0% 5%;
+    margin-bottom: 1rem;
+    justify-content: space-between;
+}
+
+.add-new-section-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+}

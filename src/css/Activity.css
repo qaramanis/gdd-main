@@ -1,19 +1,8 @@
-.activity-container {
-    margin-top: 3rem;
-    text-align: start;
-    padding-top: 1rem;
-}
-
-.activity-dashboard {
-    background-color: black;
-    color: whitesmoke;
-}
-
 .activity-section-header {
+    display: flex;
+    flex-direction: row;
     margin: 0% 5%;
     margin-bottom: 1rem;
-    flex-direction: row;
-    display: flex;
     justify-content: space-between;
 }
 

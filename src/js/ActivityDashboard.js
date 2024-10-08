@@ -4,7 +4,7 @@ import "../css/Activity.css";
 
 const ActivityDashboard = () => {
   return (
-    <div className="activity-dashboard">
+    <div className="dashboard">
       <div className="activity-section-header">
         <div className="activity-section-title">Most Recent Activity</div>
         <button className="activity-section-all-button">View All</button>
