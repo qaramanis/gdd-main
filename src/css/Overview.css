@@ -97,7 +97,7 @@
 }
 
 .overview-section-header {
-    margin: 0% 5%;
+    margin: 0% 10%;
     margin-bottom: 1rem;
     margin-right: 0.5rem;
 }
@@ -109,46 +109,6 @@
     align-items: center;
 }
 
-.overview-preview-item {
-    margin: 0% 5%;
-    background-color: #2a2a2a;
-    border-radius: 0.375rem;
-    padding: 1rem;
-    border-style: solid;
-    border-width: thin;
-    border-color: darkgrey;
-}
-
-.overview-preview-content {
-    display: flex;
-    align-items: center;
-}
-
-.overview-project-icon {
-    width: 2.5rem;
-    height: 2.5rem;
-    border-radius: 50%;
-    margin-right: 1rem;
-}
-
-.overview-preview-details {
-    flex-grow: 1;
-}
-
-.overview-preview-title {
-    display: flex;
-    align-items: center;
-}
-
-.overview-project-name {
-    font-weight: 600;
-    margin-right: 0.5rem;
-}
-
-.overview-recent-text,
-.overview-link-icon {
-    color: #a0a0a0;
-}
 
 .overview-link-icon {
     margin-left: 0.5rem;

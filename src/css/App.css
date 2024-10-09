@@ -17,3 +17,53 @@
 .relative {
     position: relative;
 }
+
+
+.project-name {
+    font-weight: 600;
+    margin-right: 0.5rem;
+}
+
+.recent-text,
+.link-icon {
+    color: #a0a0a0;
+}
+
+
+.preview-item {
+    margin: 1rem 10%;
+    background-color: #2a2a2a;
+    border-radius: 0.375rem;
+    padding: 1rem;
+    border-style: solid;
+    border-width: thin;
+    border-color: darkgrey;
+}
+
+.preview-content {
+    display: flex;
+    align-items: center;
+}
+
+
+.section-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    display: flex;
+}
+
+.project-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    margin-right: 1rem;
+}
+
+.preview-details {
+    flex-grow: 1;
+}
+
+.preview-title {
+    display: flex;
+    align-items: center;
+}

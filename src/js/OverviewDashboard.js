@@ -72,19 +72,19 @@ const OverviewDashboard = () => {
         </div>
       </div>
       <div className="overview-section-header">
-        <h2 className="overview-preview-content">Recent Previews</h2>
+        <h2 className="section-title">Recent Previews</h2>
       </div>
-      <div className="overview-preview-item">
-        <div className="overview-preview-content">
+      <div className="preview-item">
+        <div className="preview-content">
           <img
             src="/api/placeholder/40/40"
             alt="icon"
-            className="overview-project-icon"
+            className="project-icon"
           />
-          <div className="overview-preview-details">
-            <div className="overview-preview-title">
-              <span className="overview-project-name">test</span>
-              <span className="overview-recent-text">Most recent action</span>
+          <div className="preview-details">
+            <div className="preview-title">
+              <span className="project-name">test</span>
+              <span className="recent-text">Most recent action</span>
             </div>
           </div>
           <button className="overview-more-options">
@@ -97,19 +97,19 @@ const OverviewDashboard = () => {
         </div>
       </div>
       <div className="overview-section-header">
-        <h2 className="overview-section-title">Projects</h2>
+        <h2 className="section-title">Projects</h2>
       </div>
-      <div className="overview-preview-item">
-        <div className="overview-preview-content">
+      <div className="preview-item">
+        <div className="preview-content">
           <img
             src="/api/placeholder/40/40"
             alt="icon"
-            className="overview-project-icon"
+            className="project-icon"
           />
-          <div className="overview-preview-details">
-            <div className="overview-preview-title">
-              <span className="overview-project-name">test</span>
-              <span className="overview-recent-text">Most recent action</span>
+          <div className="preview-details">
+            <div className="preview-title">
+              <span className="project-name">test</span>
+              <span className="recent-text">Most recent action</span>
             </div>
           </div>
           <button className="overview-more-options">
