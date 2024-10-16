@@ -1,10 +1,15 @@
 import React from "react";
 import "../css/App.css";
+import "../css/Overview.css";
 
 const MyTeams = () => {
   return (
-    <div className="my-teams-container">
-      <h1>this is the my teams site</h1>
+    <div className="container">
+      <div className="dashboard">
+        <div className="section-header">
+          <div className="section-title">My Teams</div>
+        </div>
+      </div>
     </div>
   );
 };

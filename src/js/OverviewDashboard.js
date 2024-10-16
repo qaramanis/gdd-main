@@ -13,6 +13,7 @@ const OverviewDashboard = () => {
   };
   const handleMenuItemClick = () => {
     setIsAddMenuOpen(false);
+    //add more functionality onClick
   };
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -71,7 +72,7 @@ const OverviewDashboard = () => {
           </div>
         </div>
       </div>
-      <div className="overview-section-header">
+      <div className="section-header">
         <h2 className="section-title">Recent Previews</h2>
       </div>
       <div className="preview-item">
@@ -96,7 +97,7 @@ const OverviewDashboard = () => {
           </button>
         </div>
       </div>
-      <div className="overview-section-header">
+      <div className="section-header">
         <h2 className="section-title">Projects</h2>
       </div>
       <div className="preview-item">

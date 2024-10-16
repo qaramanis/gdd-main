@@ -6,7 +6,7 @@ const ActivityDashboard = () => {
   return (
     <div className="dashboard">
       <div className="activity-section-header">
-        <div className="activity-section-title">Most Recent Activity</div>
+        <div className="section-title">Most Recent Activity</div>
         <button className="activity-section-all-button">View All</button>
       </div>
       <div className="preview-item">
@@ -24,7 +24,6 @@ const ActivityDashboard = () => {
           </div>
         </div>
       </div>
-      
     </div>
   );
 };
