@@ -1,1 +1,1 @@
-# Gamek Desgin Docment Maker for University Thesis
+# Game Design Document Maker for University Thesis
