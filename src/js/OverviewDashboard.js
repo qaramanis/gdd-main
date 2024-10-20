@@ -6,9 +6,10 @@ import { useRef, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { createClient } from "@supabase/supabase-js";
 
+
 const supabase = createClient(
-  process.env.REACT_APP_SUPABASE_URL,
-  process.env.REACT_APP_SUPABASE_ANON_KEY
+  "https://fnvofuoyqfwgtsrbpdwj.supabase.co",
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZudm9mdW95cWZ3Z3RzcmJwZHdqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mjc0NTU2MzYsImV4cCI6MjA0MzAzMTYzNn0.A588AubbeSeuxd4RHNFdkhidC1kqAEzOBBOlGB_Wt0Y"
 )
 
 const OverviewDashboard = () => {
