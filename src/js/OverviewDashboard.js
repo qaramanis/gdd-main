@@ -4,6 +4,13 @@ import "../css/Overview.css";
 import { Search, Plus } from "lucide-react";
 import { useRef, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { createClient } from "@supabase/supabase-js";
+
+
+const supabase = createClient(
+  "https://fnvofuoyqfwgtsrbpdwj.supabase.co",
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZudm9mdW95cWZ3Z3RzcmJwZHdqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mjc0NTU2MzYsImV4cCI6MjA0MzAzMTYzNn0.A588AubbeSeuxd4RHNFdkhidC1kqAEzOBBOlGB_Wt0Y"
+)
 
 const OverviewDashboard = () => {
 
@@ -31,7 +38,7 @@ const OverviewDashboard = () => {
   }, []);
 
 
-  const[prjects, setProjects] = useState([]);
+  const [projects, setProjects] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true)
 
@@ -42,27 +49,26 @@ const OverviewDashboard = () => {
   async function fetchProjects(){
     try {
       console.log ("Fetching projects ... ")
-      const {data, error} = await supabase
-        .from('projects')
-        .select()
+      
+      let {data: projects, error } = await supabase
+      .from('projects')
+      .select('*')
 
       if(error) {
         throw error
       }
-      
-      console.log ("Projects fetched:", data)
-      setProjects(data)
+
+      setProjects(projects)
+
+      console.log("Projects fetched successfully", projects)
     }catch (error){
-      console.error("Error fetching prjects:", error.message)
+      console.error("Error fetching projects:", error.message)
       setError(error.message)
     }finally {
       setLoading(false)
     }
   }
 
-  if (loading) {
-    return <div>Loading...</div>
-  }
 
   if (error) {
     return <div>Error: {error}</div>
@@ -116,24 +122,33 @@ const OverviewDashboard = () => {
       <div className="section-header">
         <h2 className="section-title">Recent Previews</h2>
       </div>
-      <div className="preview-item">
-        <div className="preview-content">
-          <img
-            src="/api/placeholder/40/40"
-            alt="icon"
-            className="project-icon"
-          />
-          <div className="preview-details">
-            <div className="preview-title">
-              <span className="project-name">test</span>
-              <span className="recent-text">Most recent action</span>
+      {projects.length === 0 ? (
+        <p>no projects</p>
+      ) : (
+      <div>
+        {projects.slice(0,2).map(project => (
+          <div className="preview-item">
+            <div className="preview-content"  key={project.id}>
+              <img
+                src="/api/placeholder/40/40"
+                alt="icon"
+                className="project-icon"
+              />
+              <div className="preview-details">
+                <div className="preview-title">
+                  <span className="project-name">{project.name}</span>
+                  <span className="recent-text">Most recent action</span>
+                </div>
+              </div>
+              <div className="preview-timestamp">
+                {project.created_at}
+              </div>
             </div>
           </div>
-          <div className="preview-timestamp">
-            <span>timestamp</span>
-          </div>
-        </div>
+        ))}
       </div>
+      )}
+          
       <div className="section-header">
         <h2 className="section-title">Projects</h2>
       </div>
