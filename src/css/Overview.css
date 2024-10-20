@@ -50,7 +50,6 @@
     gap: 1rem;
 }
 
-
 .overview-add-button {
     display: flex;
     align-items: center;
@@ -66,9 +65,7 @@
     background-color: lightgray;
 }
 
-.relative {
-    position: relative;
-}
+
 
 .new-dropdown-menu {
     position: absolute;
@@ -88,6 +85,7 @@
     color: whitesmoke;
     text-decoration: none;
 }
+
 .new-menu-item:hover {
     background-color: #3a3a3a;
 }
@@ -134,30 +132,4 @@
     background-color: #4ade80;
     border-radius: 50%;
     margin: 0.5rem;
-}
-
-.overview-more-options {
-    height: 2rem;
-    width: 2rem;
-    color: whitesmoke;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    border-radius: 4px;
-}
-
-.overview-more-options:hover {
-    background-color: #3a3a3a;
-}
-
-.overview-more-option-container {
-    display: flex;
-}
-
-.overview-more-options-dot {
-    width: 0.2rem;
-    height: 0.2rem;
-    background-color: white;
-    border-radius: 50%;
-    margin: 10px 2px;
 }

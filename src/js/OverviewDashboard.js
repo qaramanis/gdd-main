@@ -6,11 +6,13 @@ import { useRef, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const OverviewDashboard = () => {
+
   const [isAddMenuOpen, setIsAddMenuOpen] = useState(false);
   const addMenuRef = useRef(null);
   const toggleAddMenu = () => {
     setIsAddMenuOpen(!isAddMenuOpen);
   };
+
   const handleMenuItemClick = () => {
     setIsAddMenuOpen(false);
     //add more functionality onClick
@@ -27,6 +29,45 @@ const OverviewDashboard = () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+
+
+  const[prjects, setProjects] = useState([]);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    fetchProjects()
+  }, [])
+
+  async function fetchProjects(){
+    try {
+      console.log ("Fetching projects ... ")
+      const {data, error} = await supabase
+        .from('projects')
+        .select()
+
+      if(error) {
+        throw error
+      }
+      
+      console.log ("Projects fetched:", data)
+      setProjects(data)
+    }catch (error){
+      console.error("Error fetching prjects:", error.message)
+      setError(error.message)
+    }finally {
+      setLoading(false)
+    }
+  }
+
+  if (loading) {
+    return <div>Loading...</div>
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>
+  }
+
   return (
     <div className="dashboard">
       <div className="overview-dashboard-header">
@@ -88,13 +129,9 @@ const OverviewDashboard = () => {
               <span className="recent-text">Most recent action</span>
             </div>
           </div>
-          <button className="overview-more-options">
-            <div className="overview-more-option-container">
-              <div className="overview-more-options-dot"></div>
-              <div className="overview-more-options-dot"></div>
-              <div className="overview-more-options-dot"></div>
-            </div>
-          </button>
+          <div className="preview-timestamp">
+            <span>timestamp</span>
+          </div>
         </div>
       </div>
       <div className="section-header">
@@ -113,13 +150,9 @@ const OverviewDashboard = () => {
               <span className="recent-text">Most recent action</span>
             </div>
           </div>
-          <button className="overview-more-options">
-            <div className="overview-more-option-container">
-              <div className="overview-more-options-dot"></div>
-              <div className="overview-more-options-dot"></div>
-              <div className="overview-more-options-dot"></div>
-            </div>
-          </button>
+          <div className="preview-timestamp">
+            timestamp
+          </div>
         </div>
       </div>
     </div>
