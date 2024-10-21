@@ -147,28 +147,36 @@ const OverviewDashboard = () => {
         ))}
       </div>
       )}
-          
       <div className="section-header">
         <h2 className="section-title">Projects</h2>
       </div>
-      <div className="preview-item">
-        <div className="preview-content">
-          <img
-            src="/api/placeholder/40/40"
-            alt="icon"
-            className="project-icon"
-          />
-          <div className="preview-details">
-            <div className="preview-title">
-              <span className="project-name">test</span>
-              <span className="recent-text">Most recent action</span>
+
+      {projects.length === 0 ? (
+        <p>no projects</p>
+      ) : (
+      <div>
+        {projects.slice(0,3).map(project => (
+          <div className="preview-item">
+            <div className="preview-content"  key={project.id}>
+              <img
+                src="/api/placeholder/40/40"
+                alt="icon"
+                className="project-icon"
+              />
+              <div className="preview-details">
+                <div className="preview-title">
+                  <span className="project-name">{project.name}</span>
+                  <span className="recent-text">{project.description}</span>
+                </div>
+              </div>
+              <div className="preview-timestamp">
+                {project.created_at}
+              </div>
             </div>
           </div>
-          <div className="preview-timestamp">
-            timestamp
-          </div>
-        </div>
+        ))}
       </div>
+      )}
     </div>
   );
 };
