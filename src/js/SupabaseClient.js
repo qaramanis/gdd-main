@@ -9,15 +9,18 @@ export async function getAllProjects() {
     const {data, error} = await supabase 
     .from('projects')
     .select('*')
+
     console.log(data);
     if (error) throw error;
     return data;
 }
 
+//retrun all action with foreign key project as a reference
 export async function getAllActions() {
     const {data, error} = await supabase 
     .from('actions') 
-    .select('*')
+    .select('*,projects (name)')
+    
     console.log(data);
     if (error) throw error;
     return data;

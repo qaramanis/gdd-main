@@ -14,6 +14,7 @@ const ActivityDashboard = () => {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
+    
     async function loadProjects() {
       try{
         const data = await getAllProjects();
@@ -74,7 +75,7 @@ const ActivityDashboard = () => {
                 />
               <div className="preview-details">
                 <div className="preview-title">
-                  <span className="project-name"> test</span>
+                  <span className="project-name"> {action.projects.name}</span>
                   <span className="recent-text"> {action.context}</span>
                 </div>
               </div>
