@@ -1,15 +1,11 @@
 import React from "react";
 import "../css/App.css";
 import "../css/Overview.css";
+
 import { Search, Plus } from "lucide-react";
 import { useRef, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { createClient } from "@supabase/supabase-js";
-
-const supabase = createClient(
-  process.env.REACT_APP_SUPABASE_URL,
-  process.env.REACT_APP_SUPABASE_ANON_KEY
-)
+import { supabase } from "./SupabaseClient"
 
 const OverviewDashboard = () => {
 
