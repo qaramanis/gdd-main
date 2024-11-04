@@ -1,11 +1,11 @@
 import React from "react";
 import "../css/App.css";
-import AddNewDashboard from "./AddNewDashboard";
+import AddNewDashboard from "./AddNewTeamMemberDashboard";
 
 const AddNew = () => {
   return (
     <div className="container">
-      <AddNewDashboard />
+      <AddNewTeamMember />
     </div>
   );
 };

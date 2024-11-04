@@ -4,6 +4,8 @@ import NavBar from "./js/NavBar";
 import Overview from "./js/Overview";
 import MyTeams from "./js/MyTeams";
 import Activity from "./js/Activity";
+import AddNewTeamMember from "./js/AddNewTeamMember";
+import AddNewGame from "./js/AddNewGame";
 
 const App = () => {
   return (
@@ -15,6 +17,8 @@ const App = () => {
           <Route path="/overview" element={<Overview />} />
           <Route path="/my-teams" element={<MyTeams />} />
           <Route path="/activity" element={<Activity />} />
+          <Route path="/add-new-team-member" element={<AddNewTeamMember />} />
+          <Route path="add-new-game" element={<AddNewGame />} />
         </Routes>
       </div>
     </Router>

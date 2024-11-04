@@ -87,21 +87,14 @@ const OverviewDashboard = () => {
             {isAddMenuOpen && (
               <div className="new-dropdown-menu">
                 <Link
-                  to="/add-new"
+                  to="/add-new-game"
                   className="new-menu-item"
                   onClick={handleMenuItemClick}
                 >
                   Game
                 </Link>
                 <Link
-                  to="/add-new"
-                  className="new-menu-item"
-                  onClick={handleMenuItemClick}
-                >
-                  File
-                </Link>
-                <Link
-                  to="/add-new"
+                  to="/add-new-team-member"
                   className="new-menu-item"
                   onClick={handleMenuItemClick}
                 >

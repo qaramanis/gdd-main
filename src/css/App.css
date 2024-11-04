@@ -13,10 +13,23 @@
     background-color: black;
     color: whitesmoke;
 }
+
 .section-header {
     margin: 0% 10%;
     margin-bottom: 1rem;
     margin-right: 0.5rem;
+}
+
+.section-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    display: flex;
+}
+
+.section-subtitle {
+    font-size: 1rem;
+    display: flex;
+    color: lightslategray;
 }
 
 .relative {
@@ -60,13 +73,6 @@
 
 .preview-timestamp{
     
-}
-
-
-.section-title {
-    font-size: 1.125rem;
-    font-weight: 600;
-    display: flex;
 }
 
 .project-icon {
