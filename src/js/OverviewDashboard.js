@@ -15,10 +15,7 @@ const OverviewDashboard = () => {
     setIsAddMenuOpen(!isAddMenuOpen);
   };
 
-  const handleMenuItemClick = () => {
-    setIsAddMenuOpen(false);
-    //add more functionality onClick
-  };
+  
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (addMenuRef.current && !addMenuRef.current.contains(event.target)) {
@@ -89,14 +86,12 @@ const OverviewDashboard = () => {
                 <Link
                   to="/add-new-game"
                   className="new-menu-item"
-                  onClick={handleMenuItemClick}
                 >
                   Game
                 </Link>
                 <Link
                   to="/add-new-team-member"
                   className="new-menu-item"
-                  onClick={handleMenuItemClick}
                 >
                   Team Member
                 </Link>

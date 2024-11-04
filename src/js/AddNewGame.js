@@ -1,9 +1,10 @@
 import React from 'react';
+import "../css/AddNewGame.css";
 
 const AddNewGame = () => {
     return (
         <div className="container">
-            <div className="dashboard">
+            <div className="add-new-dashboard">
                 <div className="section-header">
                     <div className="section-title">Create a new Game</div>
                     <div className="section-subtitle">

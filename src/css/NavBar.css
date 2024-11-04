@@ -3,8 +3,8 @@
     top: 0;
     left: 0;
     right: 0;
-    height: 3rem;
-    background-color: black;
+    height: 4rem;
+    background-color: #0a0a0a;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -44,7 +44,7 @@
     position: absolute;
     top: 100%;
     right: 0;
-    background-color: #2a2a2a;
+    background-color: #0a0a0a;
     border: 1px solid #ccc;
     border-radius: 4px;
     padding: 8px 0;
@@ -55,11 +55,13 @@
 
 .account-menu-item {
     display: block;
-    padding: 8px 16px;
+    padding: 8px 16px 8px 5px;
+    margin: 0rem 0.5rem;
     color: whitesmoke;
+    border-radius: 0.3rem;
     text-decoration: none;
 }
 
 .account-menu-item:hover {
-    background-color: #3a3a3a;
+    background-color: #1a1a1a;
 }
