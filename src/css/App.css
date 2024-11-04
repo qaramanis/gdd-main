@@ -51,9 +51,8 @@
     background-color: #0a0a0a;
     border-radius: 0.375rem;
     padding: 1rem;
-    border-style: solid;
-    border-width: thin;
-    border-color: darkgrey;
+    border: thin solid;
+    border-color: #3a3a3a;
     cursor : pointer;
 }
 

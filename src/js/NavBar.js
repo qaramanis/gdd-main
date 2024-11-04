@@ -26,18 +26,20 @@ const AppBar = () => {
   }, []);
   return (
     <div className="app-bar">
-      <nav className="nav-items">
-        <Link to="/overview" className="nav-item">
-          Overview
-        </Link>
-        <Link to="/my-teams" className="nav-item">
-          My Teams
-        </Link>
-        <Link to="/activity" className="nav-item">
-          Activity
-        </Link>
-      </nav>
-      <div ref={menuRef}>
+      <div className="main-container">
+        <nav className="nav-items">
+          <Link to="/overview" className="nav-item">
+            Overview
+          </Link>
+          <Link to="/my-teams" className="nav-item">
+            My Teams
+          </Link>
+          <Link to="/activity" className="nav-item">
+            Activity
+          </Link>
+        </nav>
+      </div>
+      <div ref={menuRef} className="account-container">
         <img
           src="/api/placeholder/40/40"
           alt="icon"

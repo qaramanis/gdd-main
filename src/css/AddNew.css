@@ -1,0 +1,20 @@
+.add-new-dashboard{
+    background-color: black ;
+    color: whitesmoke ;
+}
+
+.add-new-header{
+    margin: 2rem 10%;
+}
+
+.add-new-title{
+    font-size: 2rem;
+    font-weight: 600;
+    display: flex;
+}
+
+.add-new-subtitle{
+    font-size: 1.5rem;
+    display: flex;
+    color: lightslategray;
+}
