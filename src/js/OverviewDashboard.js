@@ -5,10 +5,10 @@ import "../css/Overview.css";
 import { Search, Plus } from "lucide-react";
 import { useRef, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { supabase } from "./SupabaseClient"
+import { supabase } from "./SupabaseClient";
+import TimeStampFormatter from "./TimeStampFormatter";
 
 const OverviewDashboard = () => {
-
   const [isAddMenuOpen, setIsAddMenuOpen] = useState(false);
   const addMenuRef = useRef(null);
   const toggleAddMenu = () => {
@@ -32,41 +32,39 @@ const OverviewDashboard = () => {
     };
   }, []);
 
-
   const [projects, setProjects] = useState([]);
   const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetchProjects()
-  }, [])
+    fetchProjects();
+  }, []);
 
-  async function fetchProjects(){
+  async function fetchProjects() {
     try {
-      console.log ("Fetching projects ... ")
-      
-      let {data: projects, error } = await supabase
-      .from('projects')
-      .select('*')
+      console.log("Fetching projects ... ");
 
-      if(error) {
-        throw error
+      let { data: projects, error } = await supabase
+        .from("projects")
+        .select("*");
+
+      if (error) {
+        throw error;
       }
 
-      setProjects(projects)
+      setProjects(projects);
 
-      console.log("Projects fetched successfully", projects)
-    }catch (error){
-      console.error("Error fetching projects:", error.message)
-      setError(error.message)
-    }finally {
-      setLoading(false)
+      console.log("Projects fetched successfully", projects);
+    } catch (error) {
+      console.error("Error fetching projects:", error.message);
+      setError(error.message);
+    } finally {
+      setLoading(false);
     }
   }
 
-
   if (error) {
-    return <div>Error: {error}</div>
+    console.log("Error:" && { error });
   }
 
   return (
@@ -120,28 +118,31 @@ const OverviewDashboard = () => {
       {projects.length === 0 ? (
         <p>no projects</p>
       ) : (
-      <div>
-        {projects.slice(0,3).map(project => (
-          <div className="preview-item">
-            <div className="preview-content"  key={project.id}>
-              <img
-                src="/api/placeholder/40/40"
-                alt="icon"
-                className="project-icon"
-              />
-              <div className="preview-details">
-                <div className="preview-title">
-                  <span className="project-name">{project.name}</span>
-                  <span className="recent-text">Most recent action</span>
+        <div>
+          {projects.slice(0, 3).map((project) => (
+            <div className="preview-item">
+              <div className="preview-content" key={project.id}>
+                <img
+                  src="/api/placeholder/40/40"
+                  alt="icon"
+                  className="project-icon"
+                />
+                <div className="preview-details">
+                  <div className="preview-title">
+                    <span className="project-name">{project.name}</span>
+                    <span className="recent-text">Most recent action</span>
+                  </div>
+                </div>
+                <div className="preview-timestamp">
+                  <TimeStampFormatter
+                    timestamp={project.created_at}
+                    format="date"
+                  />
                 </div>
               </div>
-              <div className="preview-timestamp">
-                {project.created_at}
-              </div>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
       )}
       <div className="section-header">
         <h2 className="section-title">Projects</h2>
@@ -150,28 +151,31 @@ const OverviewDashboard = () => {
       {projects.length === 0 ? (
         <p>no projects</p>
       ) : (
-      <div>
-        {projects.slice(0,3).map(project => (
-          <div className="preview-item">
-            <div className="preview-content"  key={project.id}>
-              <img
-                src="/api/placeholder/40/40"
-                alt="icon"
-                className="project-icon"
-              />
-              <div className="preview-details">
-                <div className="preview-title">
-                  <span className="project-name">{project.name}</span>
-                  <span className="recent-text">{project.description}</span>
+        <div>
+          {projects.slice(0, 3).map((project) => (
+            <div className="preview-item">
+              <div className="preview-content" key={project.id}>
+                <img
+                  src="/api/placeholder/40/40"
+                  alt="icon"
+                  className="project-icon"
+                />
+                <div className="preview-details">
+                  <div className="preview-title">
+                    <span className="project-name">{project.name}</span>
+                    <span className="recent-text">{project.description}</span>
+                  </div>
+                </div>
+                <div className="preview-timestamp">
+                  <TimeStampFormatter
+                    timestamp={project.created_at}
+                    format="date"
+                  />
                 </div>
               </div>
-              <div className="preview-timestamp">
-                {project.created_at}
-              </div>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
       )}
     </div>
   );

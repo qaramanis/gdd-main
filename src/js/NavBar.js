@@ -61,13 +61,6 @@ const AppBar = () => {
               Settings
             </Link>
             <Link
-              to="/billing"
-              className="account-menu-item"
-              onClick={handleMenuItemClick}
-            >
-              Billing
-            </Link>
-            <Link
               to="/logout"
               className="account-menu-item"
               onClick={handleMenuItemClick}

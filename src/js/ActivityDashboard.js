@@ -3,56 +3,53 @@ import "../css/App.css";
 import "../css/Activity.css";
 import "./SupabaseClient.js";
 
-import { useRef, useState, useEffect } from "react";
-import {supabase, getAllActions, getAllProjects} from "./SupabaseClient";
+import { useState, useEffect } from "react";
+import { getAllActions, getAllProjects } from "./SupabaseClient";
 
 const ActivityDashboard = () => {
-
   const [projects, setProjects] = useState([]);
   const [actions, setActions] = useState([]);
   const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    
     async function loadProjects() {
-      try{
+      try {
         const data = await getAllProjects();
         setProjects(data);
-      } catch(error){
-        setError (prev => ({...prev, projects: error.message}));
+      } catch (error) {
+        setError((prev) => ({ ...prev, projects: error.message }));
       } finally {
-        setLoading(prev => ({...prev, projects: false}));
+        setLoading((prev) => ({ ...prev, projects: false }));
       }
     }
 
     async function loadActions() {
-      try{
+      try {
         const data = await getAllActions();
         setActions(data);
-      }catch(error){
-        setError (prev => ({...prev, actions: error.message}));
-      }finally{
-        setLoading(prev => ({...prev, actions: false}));
+      } catch (error) {
+        setError((prev) => ({ ...prev, actions: error.message }));
+      } finally {
+        setLoading((prev) => ({ ...prev, actions: false }));
       }
     }
-    
+
     loadActions();
     loadProjects();
-    
   }, []);
 
   if (loading.projects || loading.actions) {
-    console.log("loading...")
+    console.log("loading...");
   }
 
   if (projects.error) {
-   console.log(projects.error && "Error loading projects");     
-  };
+    console.log(projects.error && "Error loading projects");
+  }
 
   if (actions.error) {
-    console.log(actions.error && "Error loading actions");     
-   };
+    console.log(actions.error && "Error loading actions");
+  }
 
   return (
     <div className="dashboard">
@@ -65,7 +62,7 @@ const ActivityDashboard = () => {
         <p>No recent actions</p>
       ) : (
         <div>
-          {actions.slice(0,10).map(action => (
+          {actions.slice(0, 10).map((action) => (
             <div className="preview-item">
               <div className="preview-content">
                 <img
@@ -73,19 +70,21 @@ const ActivityDashboard = () => {
                   alt="icon"
                   className="project-icon"
                 />
-              <div className="preview-details">
-                <div className="preview-title">
-                  <span className="project-name"> {action.projects.name}</span>
-                  <span className="recent-text"> {action.context}</span>
+                <div className="preview-details">
+                  <div className="preview-title">
+                    <span className="project-name">
+                      {" "}
+                      {action.projects.name}
+                    </span>
+                    <span className="recent-text"> {action.context}</span>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-
           ))}
         </div>
       )}
-      </div>
+    </div>
   );
 };
 
