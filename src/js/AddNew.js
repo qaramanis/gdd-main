@@ -1,6 +1,6 @@
 import React from "react";
 import "../css/App.css";
-import AddNewDashboard from "./AddNewTeamMemberDashboard";
+import AddNewTeamMember from "./AddNewTeamMemberDashboard";
 
 const AddNew = () => {
   return (
