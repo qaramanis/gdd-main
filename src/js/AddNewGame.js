@@ -105,7 +105,19 @@ const AddNewGame = () => {
             Change selected file
           </button>
         </div>
-        <div className="template-container">Templates soon to be added</div>
+
+        <div className="template-container">
+          <div className="template-content">
+            <div className="template-item-container">
+              <img
+                src="/api/placeholder/40/40"
+                alt="template-image"
+                className="template-item-image"
+              />
+              <div className="template-item-title">template 1</div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -26,10 +26,47 @@
 }
 
 .template-container {
+    display: grid;
+    grid-gap: 1rem;
     margin: 2rem 10%;
     padding: 1rem;
     background-color: #0a0a0a;
     border: thin solid #3a3a3a;
     border-radius: 0.3rem;
     color: whitesmoke;
+    min-height: 10rem;
+}
+
+.template-item-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border: 1px solid white;
+    border-radius: 0.5rem;
+    min-height: 10rem;
+}
+
+.template-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.template-item-title {
+    font-size: 1rem;
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 100%;
+    border-radius: 0 0 0.5rem 0.5rem;
+    transform: translateX(-50%);
+    background-color: violet;
+    opacity: 0.5;
+    margin: 0;
+}
+
+.template-item-image {
 }
