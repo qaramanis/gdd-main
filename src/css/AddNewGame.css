@@ -1,26 +1,33 @@
-
-.import-container{
+.import-container {
     margin: 2rem 10%;
-    padding: 1rem ;
+    padding: 1rem;
     background-color: #0a0a0a;
-    border: dashed 2px #3a3a3a ;
+    border: dashed 2px #3a3a3a;
     border-radius: 0.3rem;
     color: lightslategray;
 }
 
-.import-container:hover{
-    cursor: pointer ;
+.import-container:hover {
+    cursor: pointer;
 }
 
-.selected-file{
+.selected-file {
     margin-top: 2rem;
-    color: whitesmoke ;
-
+    color: whitesmoke;
 }
 
-.template-container{
+.add-new-change-button {
+    border-radius: 0.5rem;
+    align-items: center;
+    padding: 0.35rem 1rem;
+    border: none;
+    background-color: whitesmoke;
+    color: black;
+}
+
+.template-container {
     margin: 2rem 10%;
-    padding: 1rem ;
+    padding: 1rem;
     background-color: #0a0a0a;
     border: thin solid #3a3a3a;
     border-radius: 0.3rem;

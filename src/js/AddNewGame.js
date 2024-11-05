@@ -101,6 +101,9 @@ const AddNewGame = () => {
               <p>Drag a different file or click again to change the file</p>
             </p>
           )}
+          <button className="add-new-change-button" onClick={handleImportClick}>
+            Change selected file
+          </button>
         </div>
         <div className="template-container">Templates soon to be added</div>
       </div>
