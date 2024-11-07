@@ -1,9 +1,12 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import "../css/AddNewGame.css";
 import "../css/AddNew.css";
 import { useSearchParams } from "react-router-dom";
+import { supabase } from "./SupabaseClient";
 
 const AddNewGame = () => {
+
+  //file input related v
   const fileInputRef = useRef(null);
   const [selectedFile, setSelectedFile] = useState(null);
 
@@ -70,6 +73,41 @@ const AddNewGame = () => {
     }
   };
 
+  //database related v
+  const [templates, setTemplates] = useState([]);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
+  
+  useEffect(() => {
+    fetchTemplates();
+  }, []);
+
+  async function fetchTemplates() {
+    try{
+      console.log("Fetching templates");
+
+      let{ data: templates, error } = await supabase
+        .from("templates")
+        .select("*");
+
+      if(error){
+        throw error;
+      }
+
+      setTemplates(templates);
+      console.log("Templates fetched successfully", templates);
+    } catch (error) {
+      console.error("Error fetching templates:", error.message);
+      setError(error.message);
+    }finally {
+      setLoading(false);
+    }
+  }
+
+  if (error) {
+    console.log("Error:" && { error });
+  }
+
   return (
     <div className="container">
       <div className="add-new-dashboard">
@@ -107,16 +145,24 @@ const AddNewGame = () => {
         </div>
 
         <div className="template-container">
-          <div className="template-content">
-            <div className="template-item-container">
-              <img
-                src="/api/placeholder/40/40"
-                alt="template-image"
-                className="template-item-image"
-              />
-              <div className="template-item-title">template 1</div>
+          {templates.lenght === 0 ? (
+            <p>no templates</p>
+          ) : (
+            <div>
+            {templates.slice(0, 4).map((template) => (
+              <div className="template-content">
+                <div className="template-item-container">
+                  <img
+                    src={template.thumbnail}
+                    alt="thumbnail"
+                    className="template-item-image"
+                  />
+                  <div className="template-item-title">{template.title}</div>
+                 </div>
+              </div>
+            ))}
             </div>
-          </div>
+          )}
         </div>
       </div>
     </div>

@@ -9,12 +9,13 @@ import { supabase } from "./SupabaseClient";
 import TimeStampFormatter from "./TimeStampFormatter";
 
 const OverviewDashboard = () => {
+
+  //add new menu related v
   const [isAddMenuOpen, setIsAddMenuOpen] = useState(false);
   const addMenuRef = useRef(null);
   const toggleAddMenu = () => {
     setIsAddMenuOpen(!isAddMenuOpen);
   };
-
   
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -29,6 +30,7 @@ const OverviewDashboard = () => {
     };
   }, []);
 
+  //database related v
   const [projects, setProjects] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
