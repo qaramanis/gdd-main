@@ -134,14 +134,15 @@ const AddNewGame = () => {
           <p>Drag your file here or</p>
           <p>click to import from your computer</p>
           {selectedFile && (
-            <p className="selected-file">
+            <div className="selected-file">
               Selected file: {selectedFile.name}
               <p>Drag a different file or click again to change the file</p>
-            </p>
+              <button className="add-new-change-button" onClick={handleImportClick}>
+                Change selected file
+              </button>
+            </div>
           )}
-          <button className="add-new-change-button" onClick={handleImportClick}>
-            Change selected file
-          </button>
+          
         </div>
 
         <div className="template-container">
@@ -149,7 +150,7 @@ const AddNewGame = () => {
             <p>no templates</p>
           ) : (
             <div className="grid-container">
-            {templates.slice(0, 4).map((template) => (
+            {templates.slice(0, 3).map((template) => (
               <div className="grid-item">
                 <div className="template-item-container" key={template.id}>
                   <img
