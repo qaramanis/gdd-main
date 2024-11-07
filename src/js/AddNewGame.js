@@ -148,13 +148,13 @@ const AddNewGame = () => {
           {templates.lenght === 0 ? (
             <p>no templates</p>
           ) : (
-            <div>
+            <div className="grid-container">
             {templates.slice(0, 4).map((template) => (
-              <div className="template-content">
-                <div className="template-item-container">
+              <div className="grid-item">
+                <div className="template-item-container" key={template.id}>
                   <img
-                    src={template.thumbnail}
-                    alt="thumbnail"
+                    src={template.thumbnail_url}
+                    alt="thumbnail-url"
                     className="template-item-image"
                   />
                   <div className="template-item-title">{template.title}</div>
