@@ -19,13 +19,10 @@ const ProjectDashboard = () => {
     const [loading, setLoading] = useState(true);
     
     useEffect(() => {
-        fetchProjects();
-        if(projects){
-            fetchActions();
-        }
+        fetchData();
     }, [uuid]);
 
-    async function fetchProjects() {
+    async function fetchData() {
         try{
             console.log("Fetching projects ... ");
 
@@ -39,17 +36,8 @@ const ProjectDashboard = () => {
         }
 
         setProjects(projects);
+        
 
-        console.log("Projects fetched successfully", projects);
-        } catch (error) {
-        console.error("Error fetching projects:", error.message);
-        setError(error.message);
-        } finally {
-        setLoading(false);
-        }
-    }
-
-    async function fetchActions(){
         try{
             console.log("Fetching actions ... ");
 
@@ -67,6 +55,14 @@ const ProjectDashboard = () => {
         console.log("Actions fetched successfully", actions);
         } catch (error) {
         console.error("Error fetching actions:", error.message);
+        setError(error.message);
+        } finally {
+        setLoading(false);
+        }
+
+        console.log("Projects fetched successfully", projects);
+        } catch (error) {
+        console.error("Error fetching projects:", error.message);
         setError(error.message);
         } finally {
         setLoading(false);
@@ -95,19 +91,17 @@ const ProjectDashboard = () => {
             </div>
             <div className="project-container">
                 {actions.slice(0, 3).map((action) => (
-                    <div className="preview-item" >
-                        <div className="preview-content" key={action.id}>
-                            <div className="preview-details">
-                            <div className="preview-title">
-                                <span className="project-name">{action.name}</span>
-                                <span className="recent-text">{action.context}</span>
+                    <div className="history-item-container">
+                        <div className="history-item-content" key={action.id}>
+                            <div className="history-title">
+                                <span className="history-action-text">{action.context}</span>
                             </div>
-                            </div>
-                            <div className="preview-timestamp">
-                            <TimeStampFormatter
-                                timestamp={action.created_at}
-                                format="date"
-                            />
+                            <div className="history-timestamp">
+                                <TimeStampFormatter
+                                    timestamp={action.created_at}
+                                    format="relative"
+                                />
+                                <h style={{ marginLeft: '8px' }}>by {action.created_by}</h>
                             </div>
                         </div>
                     </div>

@@ -5,6 +5,25 @@ const TimeStampFormatter = ({ timestamp, format = "full" }) => {
     const date = new Date(timestamp);
     const now = new Date();
 
+    const formatRelativeTime = () => {
+      const diffInSeconds = Math.floor((now - date) / 1000);
+      
+      if (diffInSeconds < 60) {
+        return `${diffInSeconds}s ago`;
+      } else if (diffInSeconds < 3600) {
+        return `${Math.floor(diffInSeconds / 60)}m ago`;
+      } else if (diffInSeconds < 86400) {
+        return `${Math.floor(diffInSeconds / 3600)}h ago`;
+      } else if (diffInSeconds < 2592000) {
+        return `${Math.floor(diffInSeconds / 86400)}d ago`;
+      } else if (diffInSeconds < 31536000) {
+        return `${Math.floor(diffInSeconds / 2592000)}mo ago`;
+      } else {
+        return `${Math.floor(diffInSeconds / 31536000)}y ago`;
+      }
+    };
+
+
     const options = {
       hour: "numeric",
       minute: "numeric",
@@ -41,25 +60,7 @@ const TimeStampFormatter = ({ timestamp, format = "full" }) => {
         return date.toLocaleTimeString("en-US", options);
 
       case "relative":
-        const isToday = date.toDateString() === now.toDateString();
-        const isYesterday =
-          new Date(now - 86400000).toDateString() === date.toDateString();
-
-        if (isToday) {
-          return `Today at ${date.toLocaleTimeString("en-US", options)}`;
-        } else if (isYesterday) {
-          return `Yesterday at ${date.toLocaleTimeString("en-US", options)}`;
-        } else {
-          return date
-            .toLocaleDateString("en-US", {
-              ...options,
-              month: "long",
-              day: "numeric",
-              year: "numeric",
-            })
-            .replace(",", " at");
-        }
-
+        return formatRelativeTime();
       default:
         return date.toLocaleString();
     }
