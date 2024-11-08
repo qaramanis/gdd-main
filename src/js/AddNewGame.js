@@ -169,7 +169,7 @@ const AddNewGame = () => {
                         alt="thumbnail-url"
                         className="template-item-image"
                       />
-                      <div className="template-item-title">custom</div>
+                      <div className="template-item-title">View all</div>
               </div>
             </div>
             </div>
