@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "../css/App.css";
 import "../css/Overview.css";
 
@@ -10,6 +11,7 @@ import TimeStampFormatter from "./TimeStampFormatter";
 
 const OverviewDashboard = () => {
 
+  
   //add new menu related v
   const [isAddMenuOpen, setIsAddMenuOpen] = useState(false);
   const addMenuRef = useRef(null);
@@ -34,6 +36,7 @@ const OverviewDashboard = () => {
   const [projects, setProjects] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchProjects();
@@ -61,6 +64,10 @@ const OverviewDashboard = () => {
       setLoading(false);
     }
   }
+
+  const handleProjectClick = (projectUuid) => {
+      navigate(`/project/${projectUuid}`);
+  };
 
   if (error) {
     console.log("Error:" && { error });
@@ -103,14 +110,17 @@ const OverviewDashboard = () => {
         </div>
       </div>
       <div className="section-header">
-        <h2 className="section-title">Recent Previews</h2>
+        <div className="section-title">Recent Previews</div>
       </div>
       {projects.length === 0 ? (
         <p>no projects</p>
       ) : (
         <div>
           {projects.slice(0, 3).map((project) => (
-            <div className="preview-item">
+            <div 
+            className="preview-item" 
+            onClick={() => handleProjectClick(project.uuid)}
+            >
               <div className="preview-content" key={project.id}>
                 <img
                   src="/api/placeholder/40/40"
@@ -135,7 +145,7 @@ const OverviewDashboard = () => {
         </div>
       )}
       <div className="section-header">
-        <h2 className="section-title">Projects</h2>
+        <div className="section-title">Projects</div>
       </div>
 
       {projects.length === 0 ? (
@@ -143,7 +153,10 @@ const OverviewDashboard = () => {
       ) : (
         <div>
           {projects.slice(0, 3).map((project) => (
-            <div className="preview-item">
+            <div 
+            className="preview-item"
+            onClick={() => handleProjectClick(project.uuid)}
+            >
               <div className="preview-content" key={project.id}>
                 <img
                   src="/api/placeholder/40/40"

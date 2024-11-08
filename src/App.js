@@ -6,6 +6,7 @@ import MyTeams from "./js/MyTeams";
 import Activity from "./js/Activity";
 import AddNewTeamMember from "./js/AddNewTeamMember";
 import AddNewGame from "./js/AddNewGame";
+import Project from "./js/Project";
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
           <Route path="/activity" element={<Activity />} />
           <Route path="/add-new-team-member" element={<AddNewTeamMember />} />
           <Route path="add-new-game" element={<AddNewGame />} />
+          <Route path="/project/:uuid" element={<Project />} />
         </Routes>
       </div>
     </Router>
