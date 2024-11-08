@@ -162,10 +162,23 @@ const AddNewGame = () => {
                  </div>
               </div>
             ))}
+            <div className="grid-item">
+              <div className="template-item-container" key={"4"}>
+                      <img
+                        src="api/placeholder"
+                        alt="thumbnail-url"
+                        className="template-item-image"
+                      />
+                      <div className="template-item-title">custom</div>
+              </div>
+            </div>
             </div>
           )}
-        </div>
+
+        
+          
       </div>
+    </div>
     </div>
   );
 };
