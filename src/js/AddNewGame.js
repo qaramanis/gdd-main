@@ -5,7 +5,6 @@ import { useSearchParams } from "react-router-dom";
 import { supabase } from "./SupabaseClient";
 
 const AddNewGame = () => {
-
   //file input related v
   const fileInputRef = useRef(null);
   const [selectedFile, setSelectedFile] = useState(null);
@@ -77,20 +76,20 @@ const AddNewGame = () => {
   const [templates, setTemplates] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
-  
+
   useEffect(() => {
     fetchTemplates();
   }, []);
 
   async function fetchTemplates() {
-    try{
+    try {
       console.log("Fetching templates");
 
-      let{ data: templates, error } = await supabase
+      let { data: templates, error } = await supabase
         .from("templates")
         .select("*");
 
-      if(error){
+      if (error) {
         throw error;
       }
 
@@ -99,7 +98,7 @@ const AddNewGame = () => {
     } catch (error) {
       console.error("Error fetching templates:", error.message);
       setError(error.message);
-    }finally {
+    } finally {
       setLoading(false);
     }
   }
@@ -135,14 +134,15 @@ const AddNewGame = () => {
           <p>click to import from your computer</p>
           {selectedFile && (
             <div className="selected-file">
-              Selected file: {selectedFile.name}
-              <p>Drag a different file or click again to change the file</p>
-              <button className="add-new-change-button" onClick={handleImportClick}>
+              <p>Selected file: {selectedFile.name}</p>
+              <button
+                className="add-new-change-button"
+                onClick={handleImportClick}
+              >
                 Change selected file
               </button>
             </div>
           )}
-          
         </div>
 
         <div className="template-container">
@@ -150,35 +150,32 @@ const AddNewGame = () => {
             <p>no templates</p>
           ) : (
             <div className="grid-container">
-            {templates.slice(0, 3).map((template) => (
+              {templates.slice(0, 3).map((template) => (
+                <div className="grid-item">
+                  <div className="template-item-container" key={template.id}>
+                    <img
+                      src={template.thumbnail_url}
+                      alt="thumbnail-url"
+                      className="template-item-image"
+                    />
+                    <div className="template-item-title">{template.title}</div>
+                  </div>
+                </div>
+              ))}
               <div className="grid-item">
-                <div className="template-item-container" key={template.id}>
+                <div className="template-item-container" key={"4"}>
                   <img
-                    src={template.thumbnail_url}
+                    src="api/placeholder"
                     alt="thumbnail-url"
                     className="template-item-image"
                   />
-                  <div className="template-item-title">{template.title}</div>
-                 </div>
+                  <div className="template-item-title">View all</div>
+                </div>
               </div>
-            ))}
-            <div className="grid-item">
-              <div className="template-item-container" key={"4"}>
-                      <img
-                        src="api/placeholder"
-                        alt="thumbnail-url"
-                        className="template-item-image"
-                      />
-                      <div className="template-item-title">View all</div>
-              </div>
-            </div>
             </div>
           )}
-
-        
-          
+        </div>
       </div>
-    </div>
     </div>
   );
 };
