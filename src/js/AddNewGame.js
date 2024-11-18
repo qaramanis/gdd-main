@@ -1,13 +1,16 @@
 import React, { useRef, useState, useEffect } from "react";
 import "../css/AddNewGame.css";
 import "../css/AddNew.css";
-import { useSearchParams } from "react-router-dom";
+import { Navigate, useSearchParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { supabase } from "./SupabaseClient";
 
 const AddNewGame = () => {
   //file input related v
   const fileInputRef = useRef(null);
   const [selectedFile, setSelectedFile] = useState(null);
+  const navigate = useNavigate();
+
 
   const [searchParams] = useSearchParams();
   const itemType = searchParams.get("type");
@@ -55,12 +58,12 @@ const AddNewGame = () => {
     if (file) {
       const acceptedTypes = [
         ".txt",
-        ".cvs",
         ".html",
         ".pdf",
         ".docx",
-        ".js",
-        ".css",
+        ".odt ",
+        ".pages",
+        ".md"
       ];
       const fileExtension = "." + file.name.split(".").pop();
       if (acceptedTypes.includes(fileExtension)) {
@@ -72,6 +75,21 @@ const AddNewGame = () => {
     }
   };
 
+  const handleContinue = async () => {
+    const fileContent = await selectedFile.text();
+
+    const { data, error } = await supabase.storage
+      .from("files")
+      .upload(selectedFile.name, selectedFile)
+    if (error){
+      console.error("Error uploading file:", error);
+      
+    } else {
+      console.log('File uploaded successfully:', data);
+    }
+    //navigate(`/project/${selectedFile.name}`); //needs cahnge
+  };
+
   //database related v
   const [templates, setTemplates] = useState([]);
   const [error, setError] = useState(null);
@@ -80,6 +98,7 @@ const AddNewGame = () => {
   useEffect(() => {
     fetchTemplates();
   }, []);
+
 
   async function fetchTemplates() {
     try {
@@ -134,12 +153,24 @@ const AddNewGame = () => {
           <p>click to import from your computer</p>
           {selectedFile && (
             <div className="selected-file">
-              <p>Selected file: {selectedFile.name}</p>
+              <p>Selected file: </p>
+              <p>{selectedFile.name}</p>
               <button
                 className="add-new-change-button"
-                onClick={handleImportClick}
+                onClick={(e) => {
+                  e.stopPropagation(); 
+                  handleImportClick();}}
               >
                 Change selected file
+              </button>
+              <button
+                className="add-new-change-button"
+                onClick={(e) => {
+                  e.stopPropagation(); 
+                  handleContinue();
+                }}
+              >
+                Continue
               </button>
             </div>
           )}
@@ -150,7 +181,7 @@ const AddNewGame = () => {
             <p>no templates</p>
           ) : (
             <div className="grid-container">
-              {templates.slice(0, 3).map((template) => (
+              {templates.reverse().slice(0, 3).map((template) => (
                 <div className="grid-item">
                   <div className="template-item-container" key={template.id}>
                     <img
