@@ -45,9 +45,6 @@
     right: 1rem;
     top: 50%;
     transform: translateY(-50%);
-}
-
-.account-icon:hover {
     cursor: pointer;
 }
 
@@ -77,3 +74,4 @@
 .account-menu-item:hover {
     background-color: #1a1a1a;
 }
+

@@ -78,3 +78,16 @@
     margin-right: 1rem;
 }
 
+.logo-container {
+    position: absolute;
+    left: 1rem;
+    padding: 1rem;
+    margin: 0 1rem 0 auto;
+    cursor: pointer;
+}
+
+.logo-image{
+    color: whitesmoke;
+    top: 50%;
+    transform: translateY(-50%);
+}

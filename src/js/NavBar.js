@@ -1,11 +1,12 @@
 import React from "react";
 import { useState, useRef, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../css/NavBar.css";
 
-const AppBar = () => {
+const NavBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuRef = useRef(null);
+  const navigate = useNavigate();
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -24,8 +25,19 @@ const AppBar = () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+  const handleLogoClick = () => { 
+    navigate("/");
+  }
   return (
     <div className="app-bar">
+      <div className="logo-container">
+        <img
+            src="/api/placeholder/40/40"
+            alt="logo"
+            className="logo-image"
+            onClick={handleLogoClick}
+          />
+      </div>
       <div className="main-container">
         <nav className="nav-items">
           <Link to="/overview" className="nav-item">
@@ -76,4 +88,4 @@ const AppBar = () => {
   );
 };
 
-export default AppBar;
+export default NavBar;
