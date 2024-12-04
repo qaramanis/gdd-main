@@ -9,8 +9,14 @@ import { getAllActions, getAllProjects } from "./SupabaseClient";
 const ActivityDashboard = () => {
   const [projects, setProjects] = useState([]);
   const [actions, setActions] = useState([]);
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState({
+    projects: null,
+    actions: null
+  });
+  const [loading, setLoading] = useState({
+    projects: true,
+    actions: true
+  });
 
   useEffect(() => {
     async function loadProjects() {
@@ -40,16 +46,40 @@ const ActivityDashboard = () => {
   }, []);
 
   if (loading.projects || loading.actions) {
-    console.log("loading...");
+    return <div className="dashboard">Loading...</div>;
   }
 
-  if (projects.error) {
-    console.log(projects.error && "Error loading projects");
+  if (error.projects || error.actions) {
+    return (
+      <div className="dashboard error-container">
+        {error.projects && (
+          <div className="error-message">Error loading projects: {error.projects}</div>
+        )}
+        {error.actions && (
+          <div className="error-message">Error loading actions: {error.actions}</div>
+        )}
+      </div>
+    );
   }
 
-  if (actions.error) {
-    console.log(actions.error && "Error loading actions");
-  }
+
+  const ActivityItem = ({ action }) => (
+    <div className="preview-item" key={action.id}>
+      <div className="preview-content">
+        <img
+          src="/api/placeholder/40/40"
+          alt="icon"
+          className="project-icon"
+        />
+        <div className="preview-details">
+          <div className="preview-title">
+            <span className="project-name">{action.projects?.name}</span>
+            <span className="recent-text">{action.context}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 
   return (
     <div className="dashboard">
@@ -57,34 +87,16 @@ const ActivityDashboard = () => {
         <div className="section-title">Most Recent Activity</div>
         <button className="activity-section-all-button">View All</button>
       </div>
-
       {actions.length === 0 ? (
-        <p>No recent actions</p>
-      ) : (
-        <div>
-          {actions.slice(0, 10).map((action) => (
-            <div className="preview-item">
-              <div className="preview-content">
-                <img
-                  src="/api/placeholder/40/40"
-                  alt="icon"
-                  className="project-icon"
-                />
-                <div className="preview-details">
-                  <div className="preview-title">
-                    <span className="project-name">
-                      {" "}
-                      {action.projects.name}
-                    </span>
-                    <span className="recent-text"> {action.context}</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      )}
-    </div>
+          <p className="no-activity">No recent actions</p>
+        ) : (
+          <div className="activity-list">
+            {actions.slice(0, 10).map((action) => (
+              <ActivityItem key={action.id} action={action} />
+            ))}
+          </div>
+        )}
+      </div>
   );
 };
 

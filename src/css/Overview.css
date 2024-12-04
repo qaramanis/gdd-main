@@ -24,7 +24,7 @@
     width: auto;
     align-self: center;
     padding: 0 0.5rem;
-    color: whitesmoke;
+    color: grey;
 }
 
 .overview-search-input {
@@ -37,7 +37,7 @@
 }
 
 .overview-search-input::placeholder {
-    color: whitesmoke;
+    color: grey;
 }
 
 .overview-search-input:active {

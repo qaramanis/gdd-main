@@ -6,15 +6,22 @@ import "../css/Overview.css";
 import { Search, Plus } from "lucide-react";
 import { useRef, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { supabase } from "./SupabaseClient";
 import TimeStampFormatter from "./TimeStampFormatter";
 
-const OverviewDashboard = () => {
+import { getAllActions, getAllProjects, getUrlFromBucketFile, uploadProjectIcon } from "./SupabaseClient";
+import { supabase } from "./SupabaseClient";
 
-  
-  //add new menu related v
+
+const OverviewDashboard = () => {
   const [isAddMenuOpen, setIsAddMenuOpen] = useState(false);
   const addMenuRef = useRef(null);
+  const [projects, setProjects] = useState([]);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState({
+    projects: true
+  });
+  const navigate = useNavigate();
+
   const toggleAddMenu = () => {
     setIsAddMenuOpen(!isAddMenuOpen);
   };
@@ -32,46 +39,25 @@ const OverviewDashboard = () => {
     };
   }, []);
 
-  //database related v
-  const [projects, setProjects] = useState([]);
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const navigate = useNavigate();
-
   useEffect(() => {
-    fetchProjects();
+    async function loadProjects() {
+      try {
+        const data = await getAllProjects();
+        setProjects(data);
+      } catch (error) {
+        setError((prev) => ({ ...prev, projects: error.message }));
+      } finally {
+        setLoading((prev) => ({ ...prev, projects: false }));
+      }
+    }
+    loadProjects();
   }, []);
 
-  async function fetchProjects() {
-    try {
-      console.log("Fetching projects ... ");
 
-      let { data: projects, error } = await supabase
-        .from("projects")
-        .select("*");
-
-      if (error) {
-        throw error;
-      }
-
-      setProjects(projects);
-
-      console.log("Projects fetched successfully", projects);
-    } catch (error) {
-      console.error("Error fetching projects:", error.message);
-      setError(error.message);
-    } finally {
-      setLoading(false);
-    }
-  }
 
   const handleProjectClick = (projectUuid) => {
-      navigate(`/project/${projectUuid}`);
+    navigate(`/project/${projectUuid}`);
   };
-
-  if (error) {
-    console.log("Error:" && { error });
-  }
 
   return (
     <div className="dashboard">
@@ -92,16 +78,10 @@ const OverviewDashboard = () => {
             </button>
             {isAddMenuOpen && (
               <div className="new-dropdown-menu">
-                <Link
-                  to="/add-new-game"
-                  className="new-menu-item"
-                >
+                <Link to="/add-new-game" className="new-menu-item">
                   Game
                 </Link>
-                <Link
-                  to="/add-new-team-member"
-                  className="new-menu-item"
-                >
+                <Link to="/add-new-team-member" className="new-menu-item">
                   Team Member
                 </Link>
               </div>
@@ -109,22 +89,28 @@ const OverviewDashboard = () => {
           </div>
         </div>
       </div>
+
       <div className="section-header">
         <div className="section-title">Recent Previews</div>
       </div>
-      {projects.length === 0 ? (
-        <p>no projects</p>
+      {loading.projects ? (
+        <div>Loading projects...</div>
+      ) : error?.projects ? (
+        <div>Error loading projects: {error.projects}</div>
+      ) : projects.length === 0 ? (
+        <div>No projects found</div>
       ) : (
         <div>
           {projects.slice(0, 3).map((project) => (
             <div 
-            className="preview-item" 
-            onClick={() => handleProjectClick(project.uuid)}
+              key={project.id}
+              className="preview-item" 
+              onClick={() => handleProjectClick(project.uuid)}
             >
-              <div className="preview-content" key={project.id}>
+              <div className="preview-content">
                 <img
-                  src="/api/placeholder/40/40"
-                  alt="icon"
+                  src={project.icon_url || '/api/placeholder/40/40'}
+                  alt={`${project.name} icon`}
                   className="project-icon"
                 />
                 <div className="preview-details">
@@ -144,29 +130,34 @@ const OverviewDashboard = () => {
           ))}
         </div>
       )}
+
       <div className="section-header">
         <div className="section-title">Projects</div>
       </div>
-
-      {projects.length === 0 ? (
-        <p>no projects</p>
+      {loading.projects ? (
+        <div>Loading projects...</div>
+      ) : error?.projects ? (
+        <div>Error loading projects: {error.projects}</div>
+      ) : projects.length === 0 ? (
+        <div>No projects found</div>
       ) : (
         <div>
           {projects.slice(0, 3).map((project) => (
             <div 
-            className="preview-item"
-            onClick={() => handleProjectClick(project.uuid)}
+              key={project.id}
+              className="preview-item"
+              onClick={() => handleProjectClick(project.uuid)}
             >
-              <div className="preview-content" key={project.id}>
+              <div className="preview-content">
                 <img
-                  src="/api/placeholder/40/40"
-                  alt="icon"
+                  src={project.icon_url || '/api/placeholder/40/40'}
+                  alt={`${project.name} icon`}
                   className="project-icon"
                 />
                 <div className="preview-details">
                   <div className="preview-title">
                     <span className="project-name">{project.name}</span>
-                    <span className="recent-text">{project.description}</span>
+                    <span className="project-subtitle">{project.subtitle}</span>
                   </div>
                 </div>
                 <div className="preview-timestamp">

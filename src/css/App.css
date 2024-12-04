@@ -47,6 +47,12 @@
     color: #a0a0a0;
 }
 
+.project-subtitle{
+    color: #a0a0a0;
+    text-align: start;
+}
+
+
 .preview-item {
     margin: 1rem 10%;
     background-color: #0a0a0a;
@@ -68,7 +74,10 @@
 
 .preview-title {
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: flex-start;
+    margin-left: 1rem;
 }
 
 .project-icon {

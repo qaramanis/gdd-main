@@ -29,3 +29,21 @@
 .activity-link-icon {
     margin-left: 0.5rem;
 }
+
+
+
+.no-activity {
+    color: #666;
+    text-align: center;
+    padding: 24px;
+    font-size: 16px;
+    background-color: #f9f9f9;
+    border-radius: 6px;
+    margin: 8px 0;
+}
+
+.activity-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}

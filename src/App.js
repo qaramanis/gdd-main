@@ -13,13 +13,14 @@ import HomeNavBar from "./js/HomeNavBar";
 
 const AppContent = () =>{
   const location = useLocation();
-  const isHome = location.pathname === "/";
+  const isHome = location.pathname === "/home";
 
   return (
       <div className="App">
         {isHome ? <HomeNavBar /> : <NavBar />}
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Overview />} />
+          <Route path="/home" element={<Home />} />
           <Route path="/overview" element={<Overview />} />
           <Route path="/my-teams" element={<MyTeams />} />
           <Route path="/activity" element={<Activity />} />

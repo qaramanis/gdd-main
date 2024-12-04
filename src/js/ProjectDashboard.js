@@ -2,110 +2,96 @@ import React, {useState, useEffect} from 'react';
 import "../css/Project.css";
 import "../css/App.css";
 
+import TimeStampFormatter from './TimeStampFormatter';
+
 import { supabase } from "./SupabaseClient";
-import TimeStampFormatter
- from './TimeStampFormatter';
-
-
+import { getAllActions, getAllProjects, getProjectByUuid, getActionForProjectById } from './SupabaseClient';
 
 import { useParams } from 'react-router-dom';
 
 const ProjectDashboard = () => {
 
     const {uuid} = useParams();
-    const [projects, setProjects] = useState([]);
+    const [project, setProject] = useState([]);
     const [error, setError] = useState(null);
     const [actions, setActions] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState({
+        project: true,
+        actions: true
+    });
     
     useEffect(() => {
-        fetchData();
+        async function fetchProject() {
+            try {
+              const data = await getProjectByUuid(uuid);
+              setProject(data);
+            } catch (error) {
+              setError((prev) => ({ ...prev, project: error.message }));
+            } finally {
+              setLoading((prev) => ({ ...prev, project: false }));
+            }
+          }
+        fetchProject();
     }, [uuid]);
-
-    async function fetchData() {
-        try{
-            console.log("Fetching projects ... ");
-
-        let { data: projects, error } = await supabase
-            .from("projects")
-            .select("*")
-            .eq("uuid",uuid)
-            .single();
-        if (error) {
-            throw error;
-        }
-
-        setProjects(projects);
-        
-
-        try{
-            console.log("Fetching actions ... ");
-
-        let { data: actions, error } = await supabase
-            .from("actions")
-            .select("*")
-            .eq("project_id", projects.id);
-
-        if (error) {
-            throw error;
-        }
-
-        setActions(actions);
-
-        console.log("Actions fetched successfully", actions);
-        } catch (error) {
-        console.error("Error fetching actions:", error.message);
-        setError(error.message);
-        } finally {
-        setLoading(false);
-        }
-
-        console.log("Projects fetched successfully", projects);
-        } catch (error) {
-        console.error("Error fetching projects:", error.message);
-        setError(error.message);
-        } finally {
-        setLoading(false);
-        }
-    }
-
-    if (error) {
-        console.log("Error:" && { error });
-    }
     
+    useEffect(() => {
+        async function fetchActions() {
+            if (!project?.id) return; // Don't fetch if project.id isn't available yet
+            
+            try {
+                const data = await getActionForProjectById(project.id);
+                setActions(data);
+            } catch (error) {
+                setError(prev => ({ ...prev, actions: error.message }));
+            } finally {
+                setLoading(prev => ({ ...prev, actions: false }));
+            }
+        }
+        fetchActions();
+    }, [project?.id]);
+
+
+    if (loading.project) return <div>Loading project...</div>;
+    if (error?.project) return <div>Error loading project: {error.project}</div>;
+    if (!project) return <div>No project found</div>;
 
     return ( 
         <div className="dashboard">
-            {/*basic information*/}
             <div className="section-header">
-                <div className="section-title">{projects.name}</div>
+                <div className="section-title">{project.name}</div>
             </div>
             <div className="project-container">
             
             </div>
-
-             {/*history*/}
             <div className="section-header">
                 <div className="section-title">History</div>
                 <div className="section-subtitle">Latest edits on your project</div>
             </div>
             <div className="project-container">
-                {actions.slice(0, 3).map((action) => (
-                    <div className="history-item-container">
-                        <div className="history-item-content" key={action.id}>
-                            <div className="history-title">
-                                <span className="history-action-text">{action.context}</span>
-                            </div>
-                            <div className="history-timestamp">
-                                <TimeStampFormatter
-                                    timestamp={action.created_at}
-                                    format="relative"
-                                />
-                                <h style={{ marginLeft: '8px' }}>by {action.created_by}</h>
+            {loading.actions ? (
+                    <div>Loading actions...</div>
+                ) : error?.actions ? (
+                    <div>Error loading actions: {error.actions}</div>
+                ) : actions.length > 0 ? (
+                    actions.slice(0, 3).map((action) => (
+                        <div className="history-item-container" key={action.id}>
+                            <div className="history-item-content">
+                                <div className="history-title">
+                                    <span className="history-action-text">{action.context}</span>
+                                </div>
+                                <div className="history-timestamp">
+                                    <TimeStampFormatter
+                                        timestamp={action.created_at}
+                                        format="relative"
+                                    />
+                                    <span style={{ marginLeft: '8px' }}>by {action.created_by}</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                ))}
+                    ))
+                ) : (
+                    <div>No actions found</div>
+                )}
             </div>
 
             {/*team members*/}
