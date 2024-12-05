@@ -61,7 +61,17 @@ const ProjectDashboard = () => {
                 <div className="section-title">{project.name}</div>
             </div>
             <div className="project-container">
-            
+                <div className="project-item-container">
+                    <div className="project-image">
+                        <img 
+                         src="/api/placeholder/400/300" 
+                         alt="Project thumbnail" 
+                         className="project-thumbnail"/>
+                    </div>
+                    <div className="project-description">
+                        {project.description}
+                    </div>
+                </div>
             </div>
             <div className="section-header">
                 <div className="section-title">History</div>
