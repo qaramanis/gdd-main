@@ -64,8 +64,8 @@ const ProjectDashboard = () => {
                 <div className="project-item-container">
                     <div className="project-image">
                         <img 
-                         src="/api/placeholder/400/300" 
-                         alt="Project thumbnail" 
+                         src={project.icon_url || '/api/placeholder/40/40'}
+                         alt={`${project.name} icon`}
                          className="project-thumbnail"/>
                     </div>
                     <div className="project-description">

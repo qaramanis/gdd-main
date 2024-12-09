@@ -9,13 +9,15 @@
 .project-item-container{
     display: flex;
     gap: 2rem;
-    align-items: flex-start;
+    align-items: center;
     margin: 1rem 1rem;
     text-align: start !important;
 }
 
 .project-image {
-    flex: 0 0 1rem;
+    flex: 0 0 30%;
+    display: flex !important;
+    align-items: center !important;
 }
 
 .project-thumbnail {
