@@ -7,10 +7,7 @@ import { supabase } from "./SupabaseClient";
 import ProjectIconUpload from "../js/ProjectIconUpload.js";
 
 const AddNewGame = () => {
-
   
-
-
   //file input related v
   const fileInputRef = useRef(null);
   const [selectedFile, setSelectedFile] = useState(null);

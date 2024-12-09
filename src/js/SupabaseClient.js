@@ -102,6 +102,7 @@ export async function uploadProjectIcon(projectId, file){
   return filePath;
 }
 
+//returns a projectIcon url from table projects, given the project_id
 export async function getProjectIcon(projectId){
   const { data, error} = await supabase
     .from("projects")
