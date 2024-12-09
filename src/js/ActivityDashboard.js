@@ -4,7 +4,7 @@ import "../css/Activity.css";
 import "./SupabaseClient.js";
 
 import { useState, useEffect } from "react";
-import { getAllActions, getAllProjects } from "./SupabaseClient";
+import { getAllActions, getAllProjects, getProjectIcon } from "./SupabaseClient";
 
 const ActivityDashboard = () => {
   const [projects, setProjects] = useState([]);
@@ -62,13 +62,17 @@ const ActivityDashboard = () => {
     );
   }
 
+  const getProjectIcon = (projectId) => {
+    const project = projects.find(p => p.id === projectId);
+    return project?.icon_url || "/api/placeholder/40/40";
+  };
 
   const ActivityItem = ({ action }) => (
     <div className="preview-item" key={action.id}>
       <div className="preview-content">
         <img
-          src="/api/placeholder/40/40"
-          alt="icon"
+          src={getProjectIcon(action.project_id)}
+          alt={`${action.projects?.name} icon`}
           className="project-icon"
         />
         <div className="preview-details">

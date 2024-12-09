@@ -52,27 +52,27 @@ export async function getActionForProjectById(id){
 }
 
 //generates link to a certain image in my bucket using bucket name and image path
-export async function getUrlFromBucketFile(bucketName, imagePath){
-  try {
-    const { data, error } = await supabase.storage
-      .from(bucketName)
-      .getPublicUrl(imagePath, {
-        // Include the CORS headers
-        headers: corsHeaders
-      });
+// export async function getUrlFromBucketFile(bucketName, imagePath){
+//   try {
+//     const { data, error } = await supabase.storage
+//       .from(bucketName)
+//       .getPublicUrl(imagePath, {
+//         // Include the CORS headers
+//         headers: corsHeaders
+//       });
 
-    if (error) {
-      console.error('Error getting public URL:', error);
-      return null;
-    }
+//     if (error) {
+//       console.error('Error getting public URL:', error);
+//       return null;
+//     }
 
-    console.log('Public URL generated:', data.publicUrl);
-    return data.publicUrl;
-  } catch (error) {
-    console.error('Exception in getUrlFromBucketFile:', error);
-    return null;
-  }
-}
+//     console.log('Public URL generated:', data.publicUrl);
+//     return data.publicUrl;
+//   } catch (error) {
+//     console.error('Exception in getUrlFromBucketFile:', error);
+//     return null;
+//   }
+// }
 
 
 //uploads a new file to project-icons bucket and updates the url path in the database
@@ -100,4 +100,17 @@ export async function uploadProjectIcon(projectId, file){
   }
 
   return filePath;
+}
+
+export async function getProjectIcon(projectId){
+  const { data, error} = await supabase
+    .from("projects")
+    .select("icon_url")
+    .eq("id", projectId)
+    .single();
+
+    console.log("Got icon url successfully:", data);
+    if (error) throw error;
+
+    return data;
 }
