@@ -115,3 +115,50 @@ export async function getProjectIcon(projectId){
 
     return data;
 }
+
+//creates a new project
+export async function createNewProject(projectDetails) {
+  const { data, error } = await supabase
+    .from('projects')
+    .insert([
+      {
+        name: projectDetails.name,
+        description: projectDetails.description,
+        category: projectDetails.category,
+        created_at: new Date().toISOString(),
+        icon_url: null,
+        document_url: null,
+        subtitle: null
+      }
+    ])
+    .select();
+
+    console.log("Created project successfully:", data);
+  if (error) throw error;
+
+  try {
+    await createInitialAction(data[0].id);
+  } catch (actionError) {
+    console.error("Error creating initial action:", actionError);
+    // You might want to handle this error or clean up the project
+    throw actionError;
+  }
+  return data[0];
+}
+
+export async function createInitialAction(projectId) {
+  const { data, error } = await supabase
+    .from('actions')
+    .insert([
+      {
+        project_id: projectId,
+        context: "Project Initialization",
+        created_by: null,
+      }
+    ])
+    .select();
+
+    console.log("Created initial action successfully:", data);
+  if (error) throw error;
+  return data[0];
+}
