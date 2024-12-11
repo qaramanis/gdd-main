@@ -3,11 +3,12 @@ import "../css/Project.css";
 import "../css/App.css";
 
 import TimeStampFormatter from './TimeStampFormatter';
-
 import { supabase } from "./SupabaseClient";
 import { getAllActions, getAllProjects, getProjectByUuid, getActionForProjectById } from './SupabaseClient';
+import EditDescriptionModal from './EditProjectModal';
 
 import { useParams } from 'react-router-dom';
+import { Pencil } from 'lucide-react';
 
 const ProjectDashboard = () => {
 
@@ -19,6 +20,7 @@ const ProjectDashboard = () => {
         project: true,
         actions: true
     });
+    const [isEditModalOpen,setIsEditModalOpen] = useState(false);
     
     useEffect(() => {
         async function fetchProject() {
@@ -55,6 +57,10 @@ const ProjectDashboard = () => {
     if (error?.project) return <div>Error loading project: {error.project}</div>;
     if (!project) return <div>No project found</div>;
 
+    const handleProjectUpdate = (updatedProject) => {
+        setProject(updatedProject);
+    }
+
     return ( 
         <div className="dashboard">
             <div className="section-header">
@@ -70,6 +76,12 @@ const ProjectDashboard = () => {
                     </div>
                     <div className="project-description">
                         {project.description}
+                        <button
+                            onClick={() => setIsEditModalOpen(true)}
+                            className="edit-button"
+                        >
+                            <Pencil size={16} />
+                        </button>
                     </div>
                 </div>
             </div>
@@ -112,9 +124,13 @@ const ProjectDashboard = () => {
             <div className="project-container">
 
             </div>
+            <EditDescriptionModal
+                project={project}
+                isOpen={isEditModalOpen}
+                onClose={() => setIsEditModalOpen(false)}
+                onUpdate={handleProjectUpdate}
+            />
         </div>
-        
-
     )
 }
 

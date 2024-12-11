@@ -177,3 +177,17 @@ export async function createInitialAction(projectId) {
   if (error) throw error;
   return data[0];
 }
+
+
+//updates the description of a project given the project id
+export async function updateProjectDescription(projectId, newDescription){
+  const { data, error } = await supabase
+   .from('projects')
+   .update({ description: newDescription })
+   .eq('id', projectId)
+   .select();
+
+   console.log("Updated project description successfully:", data);
+  if (error) throw error;
+  return data[0];
+}

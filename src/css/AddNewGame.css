@@ -96,105 +96,105 @@
 }
 
 .game-details-container {
-    background-color: #0a0a0a;
-    margin: 2rem 10%;
-    padding: 1rem;
-    border-radius: 0.3rem;
-    border: thin solid #3a3a3a;
-    text-align: left;
-  }
-  
-  .game-details-form {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-  
-  .form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-  
-  .form-group label {
-    font-weight: 500;
-    color: whitesmoke;
-    font-size: 1rem;
-  }
-  
-  .form-input {
-    padding: 0.5rem 1rem;
-    border: 1px solid #3a3a3a;
-    border-radius: 0.3rem;
-    font-size: 14px;
-    background-color: #1a1a1a;
-    color: whitesmoke;
-    transition: border-color 0.2s ease;
-  }
-  
-  .form-input:focus {
-    outline: none;
-    border-color: #4a4a4a;
-  }
-  
-  .form-input::placeholder {
-    color: #666;
-  }
-  
-  textarea.form-input {
-    resize: vertical;
-    min-height: 80px;
-  }
-  
-  select.form-input-dropdown {
-    background-color: #1a1a1a;
-    cursor: pointer;
-  }
-  
-  select.form-input option {
-    background-color: #1a1a1a;
-    color: whitesmoke;
-  }
-  
-  .form-actions {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    gap: 1rem;
-    margin-top: 1rem;
-    width: 100%;
-  }
-  
-  .submit-button {
-    padding: 0.5rem 1.5rem;
-    border-radius: 0.3rem;
-    border: none;
-    background-color: whitesmoke;
-    color: black;
-    font-weight: 500;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-  }
-  
-  .submit-button:hover {
-    background-color: lightgray;
-  }
-  
-  .submit-button:disabled {
-    background-color: #4a4a4a;
-    cursor: not-allowed;
-  }
-  
-  .error-message {
-    color: #ff4444;
-    font-size: 0.875rem;
-    margin-top: 0.25rem;
-  }
-  
-  .form-input.error {
-    border-color: #ff4444;
-  }
-  
-  .form-input.error:focus {
-    border-color: #ff4444;
-  }
+  background-color: #0a0a0a;
+  margin: 2rem 10%;
+  padding: 1rem;
+  border-radius: 0.3rem;
+  border: thin solid #3a3a3a;
+  text-align: left;
+}
+
+.game-details-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group label {
+  font-weight: 500;
+  color: whitesmoke;
+  font-size: 1rem;
+}
+
+.form-input {
+  padding: 0.5rem 1rem;
+  border: 1px solid #3a3a3a;
+  border-radius: 0.3rem;
+  font-size: 14px;
+  background-color: #1a1a1a;
+  color: whitesmoke;
+  transition: border-color 0.2s ease;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #4a4a4a;
+}
+
+.form-input::placeholder {
+  color: #666;
+}
+
+textarea.form-input {
+  resize: vertical;
+  min-height: 80px;
+}
+
+select.form-input-dropdown {
+  background-color: #1a1a1a;
+  cursor: pointer;
+}
+
+select.form-input option {
+  background-color: #1a1a1a;
+  color: whitesmoke;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+  width: 100%;
+}
+
+.submit-button {
+  padding: 0.5rem 1.5rem;
+  border-radius: 0.3rem;
+  border: none;
+  background-color: whitesmoke;
+  color: black;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.submit-button:hover {
+  background-color: lightgray;
+}
+
+.submit-button:disabled {
+  background-color: #4a4a4a;
+  cursor: not-allowed;
+}
+
+.error-message {
+  color: #ff4444;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+.form-input.error {
+  border-color: #ff4444;
+}
+
+.form-input.error:focus {
+  border-color: #ff4444;
+}
