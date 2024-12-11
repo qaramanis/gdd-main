@@ -116,36 +116,51 @@ export async function getProjectIcon(projectId){
     return data;
 }
 
-//creates a new project
+//creates a new project with the parameters given
 export async function createNewProject(projectDetails) {
-  const { data, error } = await supabase
-    .from('projects')
-    .insert([
-      {
-        name: projectDetails.name,
-        description: projectDetails.description,
-        category: projectDetails.category,
-        created_at: new Date().toISOString(),
-        icon_url: null,
-        document_url: null,
-        subtitle: null
-      }
-    ])
-    .select();
-
-    console.log("Created project successfully:", data);
-  if (error) throw error;
-
+  let createdProject = null;
   try {
-    await createInitialAction(data[0].id);
-  } catch (actionError) {
-    console.error("Error creating initial action:", actionError);
-    // You might want to handle this error or clean up the project
-    throw actionError;
+    const { data, error } = await supabase
+      .from('projects')
+      .insert([
+        {
+          name: projectDetails.name,
+          description: projectDetails.description,
+          category: projectDetails.category,
+          created_at: new Date().toISOString(),
+          icon_url: null,
+          document_url: null,
+          subtitle: null
+        }
+      ])
+      .select();
+
+      console.log("Created project successfully:", data);
+    if (error) throw error;
+    createdProject = data[0];
+
+    try {
+      await createInitialAction(createdProject.id);
+    } catch (actionError) {
+      const { error: deleteError } = await supabase
+          .from('projects')
+          .delete()
+          .eq('id', createdProject.id);
+
+        if (deleteError) {
+          console.error("Failed to clean up project after action creation failed:", deleteError);
+          throw new Error(`Failed to create initial action and cleanup failed: ${actionError.message}`);
+        }
+        throw new Error(`Failed to create initial action: ${actionError.message}`);
+    }
+    return createdProject;
+  } catch (error) {
+    console.log("Error while creating project:", error);
+    throw error;
   }
-  return data[0];
 }
 
+//creates a new action in the table actions for the sepecified project when the projects is generated
 export async function createInitialAction(projectId) {
   const { data, error } = await supabase
     .from('actions')
