@@ -138,6 +138,7 @@
     width: 25;
     height: 120px;
     background-color: none;
+    border: thin solid #666;
     border-radius: 4px;
     overflow: hidden;
     margin: 1rem
@@ -155,12 +156,12 @@
     background-color: #1a1a1a;
     color: whitesmoke;
     border-radius: 4px;
+    border: thin solid #666;
     font-size: 1.25rem;
     display: flex;
     align-items: center;
     margin: auto 0;
     padding: 0 0.5rem;
-    border: thin solid transparent;
 }
 
 .modal-name-textarea {
@@ -179,7 +180,7 @@
 }
 
 .modal-project-name:focus-within {
-    border: thin solid #666;
+    border: thin solid whitesmoke;
 }
 
 .modal-project-description {
@@ -187,7 +188,7 @@
     grid-row: 2;
     background-color: #1a1a1a;
     border-radius: 4px;
-    border: thin solid transparent;
+    border: thin solid #666;
 }
 
 .modal-description-textarea {
@@ -203,7 +204,7 @@
 }
 
 .modal-project-description:focus-within {
-    border: thin solid #666;
+    border: thin solid whitesmoke;
 }
 
 /* Hide the modal actions for now, we can add them back later in a way that matches your design */

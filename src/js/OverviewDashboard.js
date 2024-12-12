@@ -142,7 +142,7 @@ const OverviewDashboard = () => {
         <div>No projects found</div>
       ) : (
         <div>
-          {projects.slice(0, 3).map((project) => (
+          {projects.slice(0, 10).map((project) => (
             <div 
               key={project.id}
               className="preview-item"

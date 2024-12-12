@@ -12,12 +12,12 @@
     flex-direction: row;
     background-color: #0a0a0a;
     border-radius: 0.5rem;
+    border: thin solid #666;
     margin-right: 1rem;
 }
 
 .overview-search-container:focus-within {
     border-color: whitesmoke;
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.25);
 }
 
 .overview-search-icon {
