@@ -12,12 +12,12 @@
     flex-direction: row;
     background-color: #0a0a0a;
     border-radius: 0.5rem;
-    border: thin solid #666;
+    border: thin solid #3a3a3a;
     margin-right: 1rem;
 }
 
 .overview-search-container:focus-within {
-    border-color: whitesmoke;
+    border-color: #666;
 }
 
 .overview-search-icon {
@@ -38,10 +38,6 @@
 
 .overview-search-input::placeholder {
     color: grey;
-}
-
-.overview-search-input:active {
-    border: none;
 }
 
 .overview-header-buttons {
@@ -88,7 +84,7 @@
 }
 
 .new-menu-item:hover {
-    background-color: #1a1a1a;
+    background-color: #2a2a2a;
 }
 
 .overview-button-icon {
