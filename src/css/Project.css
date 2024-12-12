@@ -9,7 +9,7 @@
 .project-item-container{
     display: flex;
     gap: 2rem;
-    align-items: center;
+    align-items: flex-start;
     margin: 1rem 1rem;
     text-align: start !important;
 }
@@ -62,15 +62,19 @@
 .project-description {
     position: relative;
     width: 100%;
+    padding-top: 24px;
 }
 
 .edit-button {
     position: absolute;
     top: 0;
     right: 0;
-    padding: 8px;
+    display: flex;
+    align-items: center;
     background: none;
     border: none;
+    border-radius: 20%;
+    padding: 4px;
     color: #a0a0a0;
     cursor: pointer;
     opacity: 0;
@@ -84,6 +88,8 @@
 
 .edit-button:hover {
     color: whitesmoke;
+    background-color: #666;
+    transition: opacity 0.2s ease-in-out;
 }
 
 .modal-overlay {
