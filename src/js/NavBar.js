@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useRef, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../css/NavBar.css";
+import { supabase } from "./SupabaseClient";
 
 const NavBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -27,7 +28,11 @@ const NavBar = () => {
   }, []);
   const handleLogoClick = () => { 
     navigate("/");
-  }
+  };
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
+    navigate('/login');
+  };
   return (
     <div className="app-bar">
       <div className="logo-container">
@@ -74,13 +79,12 @@ const NavBar = () => {
             >
               Settings
             </Link>
-            <Link
-              to="/logout"
+            <div 
               className="account-menu-item"
-              onClick={handleMenuItemClick}
+              onClick={handleLogout}
             >
               Logout
-            </Link>
+            </div>
           </div>
         )}
       </div>

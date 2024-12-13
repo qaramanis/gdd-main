@@ -1,43 +1,109 @@
 import "./css/App.css";
 
-import { BrowserRouter as Router, Route, Routes,useLocation } from "react-router-dom";
-import NavBar from "./js/NavBar";
-import Overview from "./js/Overview";
-import MyTeams from "./js/MyTeams";
-import Activity from "./js/Activity";
-import AddNewTeamMember from "./js/AddNewTeamMember";
-import AddNewGame from "./js/AddNewGame";
-import Project from "./js/Project";
-import Home from "./js/Home";
-import HomeNavBar from "./js/HomeNavBar";
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { AuthProvider, useAuth } from './js/auth/AuthContext';
+import PrivateRoute from './js/auth/PrivateRoute';
+import Login from './js/auth/Login.js';
+import Register from './js/auth/Register.js';
 
-const AppContent = () =>{
-  const location = useLocation();
-  const isHome = location.pathname === "/home";
+import AddNewTeamMember from './js/AddNewTeamMember';
+import Activity from './js/Activity';
+import Overview from './js/Overview';
+import Home from './js/Home';
+import MyTeams from './js/MyTeams';
+import AddNewGame from './js/AddNewGame';
+import Project from './js/Project';
+import NavBar from './js/NavBar';
 
+const PrivateLayout = ({ children }) => {
   return (
-      <div className="App">
-        {isHome ? <HomeNavBar /> : <NavBar />}
-        <Routes>
-          <Route path="/" element={<Overview />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/overview" element={<Overview />} />
-          <Route path="/my-teams" element={<MyTeams />} />
-          <Route path="/activity" element={<Activity />} />
-          <Route path="/add-new-team-member" element={<AddNewTeamMember />} />
-          <Route path="add-new-game" element={<AddNewGame />} />
-          <Route path="/project/:uuid" element={<Project />} />
-        </Routes>
-      </div>
+    <div className="App">
+      <NavBar />
+      {children}
+    </div>
   );
-}
+};
 
+const PrivateRouteWithNav = ({ children }) => {
+  return (
+    <PrivateRoute>
+      <PrivateLayout>{children}</PrivateLayout>
+    </PrivateRoute>
+  );
+};
 
 const App = () => {
   return (
-    <Router>
-      <AppContent />
-    </Router>
+    <AuthProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Navigate to={"/home"}/>} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          
+          <Route
+            path="/overview"
+            element={
+              <PrivateRouteWithNav>
+                <Overview />
+              </PrivateRouteWithNav>
+            }
+          />
+          <Route
+            path="/activity"
+            element={
+              <PrivateRouteWithNav>
+                <Activity />
+              </PrivateRouteWithNav>
+            }
+          />
+          <Route
+            path="/my-teams"
+            element={
+              <PrivateRouteWithNav>
+                <MyTeams />
+              </PrivateRouteWithNav>
+            }
+          />
+          <Route
+            path="/add-new-team-member"
+            element={
+              <PrivateRouteWithNav>
+                <AddNewTeamMember />
+              </PrivateRouteWithNav>
+            }
+          />
+          <Route
+            path="/add-new-game"
+            element={
+              <PrivateRouteWithNav>
+                <AddNewGame />
+              </PrivateRouteWithNav>
+            }
+          />
+          <Route
+            path="/project/:uuid"
+            element={
+              <PrivateRouteWithNav>
+                <Project />
+              </PrivateRouteWithNav>
+            }
+          />
+          <Route
+            path="/profile/user_id"
+            element={
+              <PrivateRouteWithNav>
+                <Project />
+              </PrivateRouteWithNav>
+            }
+          />
+
+          
+        </Routes>
+      </BrowserRouter>
+    </AuthProvider>
   );
 };
+
 export default App;
