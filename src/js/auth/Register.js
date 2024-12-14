@@ -1,11 +1,10 @@
-import { useState } from 'react';
-import { supabase } from '../SupabaseClient.js';
-import { useNavigate } from 'react-router-dom';
-
+import { useState } from "react";
+import { supabase } from "../SupabaseClient.js";
+import { useNavigate, Link } from "react-router-dom";
 
 const Register = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -18,11 +17,11 @@ const Register = () => {
     try {
       const { error } = await supabase.auth.signUp({
         email,
-        password
+        password,
       });
 
       if (error) throw error;
-      navigate('/login');
+      navigate("/login");
     } catch (error) {
       setError(error.message);
     } finally {
@@ -51,8 +50,14 @@ const Register = () => {
             required
           />
           <button type="submit" disabled={loading}>
-            {loading ? 'Loading...' : 'Register'}
+            {loading ? "Loading..." : "Register"}
           </button>
+          <div className="auth-link-container">
+            Already have an account?{" "}
+            <Link to="/login" className="auth-link">
+              Login here{" "}
+            </Link>
+          </div>
         </form>
       </div>
     </div>

@@ -1,19 +1,19 @@
 import "./css/App.css";
 
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { AuthProvider, useAuth } from './js/auth/AuthContext';
-import PrivateRoute from './js/auth/PrivateRoute';
-import Login from './js/auth/Login.js';
-import Register from './js/auth/Register.js';
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { AuthProvider, useAuth } from "./js/auth/AuthContext";
+import PrivateRoute from "./js/auth/PrivateRoute";
+import Login from "./js/auth/Login.js";
+import Register from "./js/auth/Register.js";
 
-import AddNewTeamMember from './js/AddNewTeamMember';
-import Activity from './js/Activity';
-import Overview from './js/Overview';
-import Home from './js/Home';
-import MyTeams from './js/MyTeams';
-import AddNewGame from './js/AddNewGame';
-import Project from './js/Project';
-import NavBar from './js/NavBar';
+import AddNewTeamMember from "./js/AddNewTeamMember";
+import Activity from "./js/Activity";
+import Overview from "./js/Overview";
+import Home from "./js/Home";
+import MyTeams from "./js/MyTeams";
+import AddNewGame from "./js/AddNewGame";
+import Project from "./js/Project";
+import NavBar from "./js/NavBar";
 
 const PrivateLayout = ({ children }) => {
   return (
@@ -37,11 +37,11 @@ const App = () => {
     <AuthProvider>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Navigate to={"/home"}/>} />
-          <Route path="/home" element={<Home />} />
+          <Route path="/" element={<Navigate to={"/home"} />} />
+          <Route path="/home" element={<Overview />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          
+
           <Route
             path="/overview"
             element={
@@ -98,8 +98,6 @@ const App = () => {
               </PrivateRouteWithNav>
             }
           />
-
-          
         </Routes>
       </BrowserRouter>
     </AuthProvider>

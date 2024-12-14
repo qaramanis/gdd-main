@@ -24,7 +24,7 @@
     font-size: 1.125rem;
     font-weight: 600;
     display: flex;
-    color : whitesmoke;
+    color: whitesmoke;
 }
 
 .section-subtitle {
@@ -47,11 +47,10 @@
     color: #a0a0a0;
 }
 
-.project-subtitle{
+.project-subtitle {
     color: #a0a0a0;
     text-align: start;
 }
-
 
 .preview-item {
     margin: 1rem 10%;
@@ -59,8 +58,8 @@
     border-radius: 0.375rem;
     padding: 1rem;
     border: thin solid #3a3a3a;
-   
-    cursor : pointer;
+
+    cursor: pointer;
 }
 
 .preview-item:hover {
@@ -99,57 +98,82 @@
     cursor: pointer;
 }
 
-.logo-image{
+.logo-image {
     color: whitesmoke;
     top: 50%;
     transform: translateY(-50%);
 }
 
-/* Add these to your existing App.css */
 .auth-form {
-    font-family: monospace; /* Match your app's font */
+    display: flex;
+    flex-direction: column;
+    align-items:;
     max-width: 400px;
     margin: 4rem auto;
     padding: 2rem;
     background-color: #0a0a0a;
     border: thin solid #3a3a3a;
     border-radius: 0.375rem;
-  }
-  
-  .auth-form h2 {
+    font-family: monospace;
+}
+
+.auth-form h2 {
     color: whitesmoke;
-    margin-bottom: 1.5rem;
-    font-size: 1.5rem;
-  }
-  
-  .auth-form input {
-    width: 100%;
-    padding: 0.5rem;
     margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.auth-form input {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 0.5rem 1rem;
+    margin: 0.5rem 0;
     background-color: #1a1a1a;
-    border: 1px solid #3a3a3a;
+    border: thin solid #3a3a3a;
     border-radius: 0.3rem;
     color: whitesmoke;
-    font-family: monospace; /* Match your app's font */
-  }
-  
-  .auth-form button {
-    width: 100%;
+    font-family: monospace;
+}
+
+.auth-form input:focus-within {
+    outline: none;
+    border: thin solid grey;
+}
+
+.auth-form button {
+    width: 30%;
     padding: 0.5rem;
     background-color: whitesmoke;
     color: black;
     border: none;
     border-radius: 0.3rem;
     cursor: pointer;
-    font-family: monospace; /* Match your app's font */
-  }
-  
-  .auth-form button:hover {
+    font-family: monospace;
+    align-self: flex-end;
+}
+
+.auth-form button:hover {
     background-color: lightgray;
-  }
-  
-  .auth-form .error-message {
+    transition: background-color 0.2s ease;
+}
+
+.auth-form .error-message {
     color: #ff4444;
     margin-bottom: 1rem;
     font-size: 0.875rem;
-  }
+}
+
+.auth-link-container {
+    margin-top: 1rem;
+    text-align: center;
+    color: lightgrey;
+}
+
+.auth-link {
+    color: whitesmoke;
+    text-decoration: underline;
+}
+
+.auth-link:hover {
+    color: white;
+}
